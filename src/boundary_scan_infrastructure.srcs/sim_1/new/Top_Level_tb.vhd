@@ -44,84 +44,94 @@ end process;
 
 process
 begin
+--    pin_tb <= (others => '0');
+--    tdi_tb <= '0';
+--    tms_tb <= '1';
+--    wait for clk_period / 2;
+--    wait for (clk_period * 2);
+--    tms_tb <= '0';
+--    wait for clk_period;
+--    tms_tb <= '1';
+--    wait for clk_period;
+--    tms_tb <= '1';
+--    wait for clk_period;
+--    tms_tb <= '0';
+--    wait for clk_period;
+--    tms_tb <= '0';
+--    wait for clk_period;
+    
+--    --inside Shift IR
+--    tdi_tb <= '0';
+--    tms_tb <= '0';
+--    wait for clk_period;
+--    tms_tb <= '0';
+--    wait for clk_period;
+--    tms_tb <= '0';
+--    wait for clk_period;
+--    tms_tb <= '0';
+--    wait for clk_period;
+    
+--    tms_tb <= '1';
+--    wait for clk_period;
+--    tms_tb <= '1';
+--    wait for clk_period;
+--    tms_tb <= '1';
+--    wait for clk_period;
+--    tms_tb <= '0';
+--    wait for clk_period;
+--    tms_tb <= '0';
+--    wait for clk_period;
+    
+--    --inside Shift DR
+--    tdi_tb <= '1';
+--    tms_tb <= '0';
+--    wait for clk_period;
+--    tms_tb <= '0';
+--    wait for clk_period;
+--    tms_tb <= '0';
+--    wait for clk_period;
+--    tms_tb <= '0';
+--    wait for clk_period;
+--    tms_tb <= '0';
+--    wait for clk_period;
+    
+--    tms_tb <= '1';
+--    wait for clk_period;
+--    tms_tb <= '1';
+--    wait for clk_period;
+--    tms_tb <= '1';
+--    wait for clk_period;
+--    tms_tb <= '1';
+--    wait for clk_period;
+--    tms_tb <= '0';
+--    wait for clk_period;
+--    tms_tb <= '0';
+--    wait for clk_period;
+    
+--    --inside Shift IR
+--    tdi_tb <= '1';
+--    tms_tb <= '0';
+--    wait for clk_period;
+--    tms_tb <= '0';
+--    wait for clk_period;
+--    tms_tb <= '0';
+--    wait for clk_period;
+--    tms_tb <= '0';
+--    wait for clk_period;
+    
+--    tms_tb <= '1';
+--    wait for clk_period;
+--    tms_tb <= '1';
+--    wait for clk_period;
+--    tms_tb <= '0';
+--    wait for clk_period;
+
     pin_tb <= (others => '0');
     tdi_tb <= '0';
+    tms_tb <= '0';
+    wait for clk_period/2;
     tms_tb <= '1';
-    wait for (clk_period * 3);
-    tms_tb <= '0';
-    wait for clk_period;
-    tms_tb <= '1';
-    wait for clk_period;
-    tms_tb <= '1';
-    wait for clk_period;
-    tms_tb <= '0';
-    wait for clk_period;
-    tms_tb <= '0';
-    wait for clk_period;
-    
-    --inside Shift IR
-    tdi_tb <= '0';
-    tms_tb <= '0';
-    wait for clk_period;
-    tms_tb <= '0';
-    wait for clk_period;
-    tms_tb <= '0';
-    wait for clk_period;
-    tms_tb <= '0';
-    wait for clk_period;
-    
-    tms_tb <= '1';
-    wait for clk_period;
-    tms_tb <= '1';
-    wait for clk_period;
-    tms_tb <= '1';
-    wait for clk_period;
-    tms_tb <= '0';
-    wait for clk_period;
-    tms_tb <= '0';
-    wait for clk_period;
-    
-    --inside Shift DR
-    tdi_tb <= '1';
-    tms_tb <= '0';
-    wait for clk_period;
-    tms_tb <= '0';
-    wait for clk_period;
-    tms_tb <= '0';
-    wait for clk_period;
-    tms_tb <= '0';
-    wait for clk_period;
-    tms_tb <= '0';
-    wait for clk_period;
-    
-    tms_tb <= '1';
-    wait for clk_period;
-    tms_tb <= '1';
-    wait for clk_period;
-    tms_tb <= '1';
-    wait for clk_period;
-    tms_tb <= '1';
-    wait for clk_period;
-    tms_tb <= '0';
-    wait for clk_period;
-    tms_tb <= '0';
-    wait for clk_period;
-    
-    --inside Shift IR
-    tdi_tb <= '1';
-    tms_tb <= '0';
-    wait for clk_period;
-    tms_tb <= '0';
-    wait for clk_period;
-    tms_tb <= '0';
-    wait for clk_period;
-    tms_tb <= '0';
-    wait for clk_period;
-    
-    tms_tb <= '1';
-    wait for clk_period;
-    tms_tb <= '1';
-    wait for clk_period;
+    wait for clk_period * 7;
     tms_tb <= '0';
     wait for clk_period;
     wait;

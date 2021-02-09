@@ -15,8 +15,9 @@ entity BP_Cell is
            rst : in STD_LOGIC;
            sin : in STD_LOGIC;
            bp_reg_mic : in STD_LOGIC;
-           --mic : in STD_LOGIC;
-           --mcsc : in STD_LOGIC;
+           mic : in STD_LOGIC;
+           mcsc_tap : in STD_LOGIC;
+           enable_ir : in STD_LOGIC;
            sout : out STD_LOGIC
        );
 end BP_Cell;
@@ -38,16 +39,12 @@ begin
     end process;
 
 --mux_in
-    --mio <= '0' when mic = '0' else
-           --sin;
---mux_cs
-    --cs_nxt <= cs_reg when mcsc = '0' else
-              --mio;
-              
     mio <= '0' when bp_reg_mic = '0' else
-        sin;
-              
-    cs_nxt <= mio;
+            sin;
+--mux_cs
+    cs_nxt <= mio when (mcsc_tap = '1' and enable_ir = '1')  else
+              cs_reg;
+                        
     sout <= cs_reg;
 
 end Behavioral;
