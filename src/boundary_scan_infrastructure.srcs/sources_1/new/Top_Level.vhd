@@ -23,7 +23,7 @@ architecture Behavioral of Top_Level is
 
 signal internal_rst, tap_mux_signal, ir_decoder_mux_signal,
 data_mux_tdo, ir_tdo, bp_tdo, bs_reg_tdo, bs_moc, internal_core_logic_out,
-ir_mic, ir_mcsc, ir_mlc, bs_mic, bs_mcsc, bs_mlc, bp_reg_mic, bp_mcsc : STD_LOGIC;
+ir_mic, ir_mcsc, ir_mlc, bs_mic, bs_mcsc, bs_mlc, bp_mic, bp_mcsc : STD_LOGIC;
 
 signal bp_en, bs_en : STD_LOGIC;
 
@@ -39,7 +39,7 @@ data_mux_tdo <= bp_tdo when ir_decoder_mux_signal = '1' else
 
 tap_controller: entity work.TAP_Controller(Behavioral)
 port map (tms => tms, clk => tck, rst_to_others => internal_rst, ir_mic => ir_mic, ir_mcsc => ir_mcsc, ir_mlc => ir_mlc,
-bs_mic => bs_mic, bs_mcsc => bs_mcsc, bs_mlc => bs_mlc, data_instruction_mux_controller_signal => tap_mux_signal, bp_reg_mic => bp_reg_mic, bp_reg_mcsc => bp_mcsc);
+bs_mic => bs_mic, bs_mcsc => bs_mcsc, bs_mlc => bs_mlc, data_instruction_mux_controller_signal => tap_mux_signal, bp_reg_mic => bp_mic, bp_reg_mcsc => bp_mcsc);
 
 instruction_register: entity work.IR_Register(Behavioral)
 port map (pout => instruction_register_pout, tdi => tdi, tdo => ir_tdo, mic => ir_mic, mcsc => ir_mcsc, rst => internal_rst, clk => tck, mlc => ir_mlc);
@@ -48,7 +48,7 @@ instruction_decoder: entity work.IR_Decoder(Behavioral)
 port map (instruction => instruction_register_pout, data_mux => ir_decoder_mux_signal, bs_moc => bs_moc, bs_en => bs_en, bp_en => bp_en);
 
 bp_cell: entity work.BP_Cell(Behavioral)
-port map (clk => tck, rst => internal_rst, sin => tdi, sout => bp_tdo, mcsc_tap => bp_mcsc, enable_ir => bp_en, bp_reg_mic => bp_reg_mic);
+port map (clk => tck, rst => internal_rst, sin => tdi, sout => bp_tdo, mcsc => bp_mcsc, enable_ir => bp_en, mic => bp_mic);
 
 core_logic: entity work.Core_Logic(Behavioral)
 port map (core_logic_in => internal_core_logic_in, core_logic_out => internal_core_logic_out);

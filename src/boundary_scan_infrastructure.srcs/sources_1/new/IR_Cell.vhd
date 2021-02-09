@@ -13,35 +13,41 @@ entity IR_Cell is
        );
 end IR_Cell;
 architecture Behavioral of IR_Cell is
-    signal mio, cs_nxt, cs_reg, l_nxt, l_reg : STD_LOGIC;
+
+signal mio, cs_nxt, cs_reg, l_nxt, l_reg : STD_LOGIC;
+
 begin
 -- state register
-    process(clk,rst)
-    begin
-        if rst='1' then
-            cs_reg <= '0';
-        elsif(rising_edge(clk))then
-            cs_reg <= cs_nxt;
-        end if;
-    end process;
-    process(clk,rst)
-    begin
-        if rst='1' then
-            l_reg <= '0';
-        elsif(falling_edge(clk)) then
-            l_reg <= l_nxt;
-        end if;
-    end process;
---mux_in
-    mio <= pin when mic = '0' else
-           sin;
---mux_cs
-    cs_nxt <= cs_reg when mcsc = '0' else
-              mio;
---mux_l
-    l_nxt <= l_reg when mlc = '0' else
-             cs_reg;
+process(clk,rst)
+begin
+    if rst='1' then
+        cs_reg <= '0';
+    elsif(rising_edge(clk))then
+        cs_reg <= cs_nxt;
+    end if;
+end process;
 
-    pout <= l_reg;
-    sout <= cs_reg;
+process(clk,rst)
+begin
+    if rst='1' then
+        l_reg <= '0';
+    elsif(falling_edge(clk)) then
+        l_reg <= l_nxt;
+    end if;
+end process;
+
+--mux_in
+mio <= pin when mic = '0' else
+       sin;
+
+--mux_cs
+cs_nxt <= cs_reg when mcsc = '0' else
+          mio;
+
+--mux_l
+l_nxt <= l_reg when mlc = '0' else
+         cs_reg;
+
+pout <= l_reg;
+sout <= cs_reg;
 end Behavioral;
