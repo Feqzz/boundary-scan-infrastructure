@@ -15,7 +15,6 @@ entity BP_Cell is
            rst : in STD_LOGIC;
            sin : in STD_LOGIC;
            bp_reg_mic : in STD_LOGIC;
-           mic : in STD_LOGIC;
            mcsc_tap : in STD_LOGIC;
            enable_ir : in STD_LOGIC;
            sout : out STD_LOGIC
