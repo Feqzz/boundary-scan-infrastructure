@@ -45,7 +45,6 @@ begin
     process
     begin
 
-
         pin <= "1111";
         tms <= '1';				
         wait for clk_period;	-- Go to TLR
@@ -70,17 +69,18 @@ begin
         wait for clk_period;		-- Go to SEL-DR
         tms <= '0';		
         wait for clk_period;		-- Go to CAPT-DR
-        tms <= '0';		
+        tms <= '0';
+        tdi <= '1';		
         wait for clk_period*2;		-- Go to SHIFT-DR
         tdi <= '0';
         tms <= '0';		
-        wait for clk_period;	-- Remain in SHIFT-DR for 4 TCK cycles
-        tdi <= '1';
+        wait for clk_period*3;	-- Remain in SHIFT-DR for 4 TCK cycles
         tms <= '1';	
         wait for clk_period;	
         wait for clk_period;
         -- Shift last bit into DR (BSR) and go to EX1-DR
-        tms <= '1';		
+        tms <= '0';		
+        pin <= "0101";
         wait for clk_period*5;		-- Go to UPDT-DR
 
 
