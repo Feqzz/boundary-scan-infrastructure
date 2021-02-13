@@ -3,9 +3,10 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity IR_Decoder is
     Port ( instruction : in STD_LOGIC_VECTOR (3 downto 0);
-           data_mux : out STD_LOGIC;
+           data_mux : out STD_LOGIC_VECTOR (1 downto 0);
            bp_en : out STD_LOGIC;
            bs_en : out STD_LOGIC;
+           or_en : out STD_LOGIC;
            bs_moc : out STD_LOGIC);
 end IR_Decoder;
 
@@ -13,8 +14,9 @@ architecture Behavioral of IR_Decoder is
 
 begin
 
-data_mux <= '0' when instruction = "0000" or instruction = "1001" or instruction = "0110" else
-    '1';
+data_mux <= "00" when instruction = "0000" or instruction = "1001" else
+    "01" when instruction = "0110" else
+    "10";
     
 bs_moc <= '1' when instruction = "0000" else
     '0';
@@ -22,7 +24,10 @@ bs_moc <= '1' when instruction = "0000" else
 bp_en <= '0' when instruction = "0000" or instruction = "1001" or instruction = "0110" else
     '1';
 
-bs_en <= '1' when instruction = "0000" or instruction = "1001" or instruction = "0110" else
+bs_en <= '1' when instruction = "0000" or instruction = "1001" else
+    '0';
+    
+or_en <= '1' when instruction = "0110" else
     '0';
 
 end Behavioral;

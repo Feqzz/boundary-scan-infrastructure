@@ -19,6 +19,9 @@ entity TAP_Controller is
            ir_mic : out STD_LOGIC;
            ir_mcsc : out STD_LOGIC;
            ir_mlc : out STD_LOGIC;
+           or_mic : out STD_LOGIC;
+           or_mcsc : out STD_LOGIC;
+           or_mlc : out STD_LOGIC;
            bp_reg_mic : out STD_LOGIC;
            bp_reg_mcsc : out STD_LOGIC;
            data_instruction_mux_controller_signal : out STD_LOGIC;
@@ -49,6 +52,9 @@ begin
     ir_mic <= '0';
     ir_mcsc <= '0';
     ir_mlc <= '0';
+    or_mic <= '0';
+    or_mcsc <= '0';
+    or_mlc <= '0';
     bp_reg_mcsc <= '0';
     data_instruction_mux_controller_signal <= '0';
     bp_reg_mic <= '0';
@@ -59,7 +65,6 @@ begin
                 state_next <= RTI;
             end if;
         when RTI =>
-            
             if tms = '1' then
                 state_next <= SDRS;
             end if;
@@ -74,6 +79,7 @@ begin
             bs_mic <= '0';
             bs_mcsc <= '1';
             bs_mlc <= '0';
+            or_mcsc <= '1';
             if tms = '1' then
                 state_next <= E1DR;
             else
@@ -85,6 +91,8 @@ begin
             bs_mic <= '1';
             bs_mcsc <= '1';
             bs_mlc <= '0';
+            or_mic <= '1';
+            or_mcsc <= '1';
             if tms = '1' then
                 state_next <= E1DR;
             end if;
@@ -117,6 +125,7 @@ begin
             --bs_mic <= '0';
             --bs_mcsc <= '1';
             bs_mlc <= '1';
+            or_mlc <= '1';
             if tms = '1' then
                 state_next <= SDRS;
             else
