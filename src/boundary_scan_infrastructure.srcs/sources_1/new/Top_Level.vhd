@@ -48,7 +48,7 @@ instruction_register: entity work.IR_Register(Behavioral)
 port map (pout => instruction_register_pout, tdi => tdi, tdo => ir_tdo, mic => ir_mic, mcsc => ir_mcsc, rst => internal_rst, clk => tck, mlc => ir_mlc);
 
 instruction_decoder: entity work.IR_Decoder(Behavioral)
-port map (instruction => instruction_register_pout, data_mux => ir_decoder_mux_signal_bus, bs_moc => bs_moc, bs_en => bs_en, bp_en => bp_en);
+port map (instruction => instruction_register_pout, data_mux => ir_decoder_mux_signal_bus, bs_moc => bs_moc, bs_en => bs_en, bp_en => bp_en, or_en => or_en);
 
 bp_cell: entity work.BP_Cell(Behavioral)
 port map (clk => tck, rst => internal_rst, sin => tdi, sout => bp_tdo, mcsc => bp_mcsc, enable_ir => bp_en, mic => bp_mic);
