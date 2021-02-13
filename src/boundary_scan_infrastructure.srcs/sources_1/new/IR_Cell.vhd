@@ -14,14 +14,14 @@ entity IR_Cell is
 end IR_Cell;
 architecture Behavioral of IR_Cell is
 
-signal mio, cs_nxt, cs_reg, l_nxt, l_reg : STD_LOGIC;
+signal mio, cs_nxt, cs_reg, l_nxt, l_reg : STD_LOGIC := '1';
 
 begin
 -- state register
 process(clk,rst)
 begin
     if rst='1' then
-        cs_reg <= '0';
+        cs_reg <= '1';
     elsif(rising_edge(clk))then
         cs_reg <= cs_nxt;
     end if;
@@ -30,7 +30,7 @@ end process;
 process(clk,rst)
 begin
     if rst='1' then
-        l_reg <= '0';
+        l_reg <= '1';
     elsif(falling_edge(clk)) then
         l_reg <= l_nxt;
     end if;
