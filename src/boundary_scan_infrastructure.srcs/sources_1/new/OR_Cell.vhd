@@ -21,16 +21,16 @@ begin
 -- state register
 process(clk, rst)
 begin
-    if rst='1' then
+    if rst = '1' then
         cs_reg <= '0';
     elsif(rising_edge(clk))then
         cs_reg <= cs_nxt;
     end if;
 end process;
 
-process(clk,rst)
+process(clk, rst)
 begin
-    if rst= '1' then
+    if rst = '1' then
         l_reg <= '0';
     elsif(falling_edge(clk)) then
         l_reg <= l_nxt;
